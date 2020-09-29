@@ -2,7 +2,7 @@ const path = require("path");
 // const addDir = path.join(__dirname, "public" );
 
 
-module.exports = app => {
+module.exports = htmlRoutes => {
 
     // Routes
     app.get('/', (req, res) => {
@@ -11,7 +11,10 @@ module.exports = app => {
     });
     
     app.get('/notes', (req, res) => {
+       
         res.sendFile(path.join(__dirname,"../public/notes.html"));
+        // console.log("i am a note");
+      
     });
     // default to home
     app.get('*', (req, res) => {

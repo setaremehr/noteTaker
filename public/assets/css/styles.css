@@ -1,4 +1,8 @@
-html, body {
+p.impact {
+  font-family: Impact, Charcoal, sans-serif;
+}
+
+/* html, body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -67,4 +71,4 @@ html, body {
   border-right: none;
   padding: 20px;
   cursor: pointer;
-}
+} */

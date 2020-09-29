@@ -1,7 +1,9 @@
+
+// const router = require('express').Router();
 const path = require("path");
 const fs = require('fs');
 
-module.exports = app => {
+module.exports = apiRoutes  => {
 fs.readFile("db/db.json", "utf8", function(err, data) {
     if (err) throw err;
     const dbJson = JSON.parse(data);
