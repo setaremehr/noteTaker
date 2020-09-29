@@ -1,23 +1,20 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-
+// const apiRoutes  = require('./routes/apiRoutes');
+// const htmlRoutes  = require('./routes/htmlRoutes');
 const app = express();
 
-const PORT= 8080;
+const PORT = process.env.PORT || 8080;
 
-app.use(express.static(path.join(__dirname, "public")));
+
+app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json);
 
-// Routes
-
-app.get('/', (req, res) => {
-    console.log("root");
-    res.sendFile(path.join(__dirname, "index.html"));
-});
-
+require('./routes/apiRoutes')(app);
+require('./routes/htmlRoutes')(app);
 
 app.listen(PORT, () => {
-    console.log("successfully started on : " + PORT);
-})
+    console.log('server is running and listening on http://localhost:' + PORT);
+});
