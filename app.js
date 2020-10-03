@@ -53,19 +53,18 @@ app.post("/api/notes", (req, res) => {
 });
 
 app.delete("/api/notes/:id", (req, res) => {
-    let id = req.params.id;
-    readFileAsync(path.join(__dirname, "./public/assets/js/index.js"), "utf8")
-        .then(data =>  {
+    var id = req.params.id;
+    readFileAsync(path.join(__dirname, "./db/db.json"), "utf8")
+        .then( data => {
             allNotes = JSON.parse(data);
             allNotes.splice(id, 1);
             writefileAsync(path.join(__dirname, "./db/db.json"), JSON.stringify(allNotes))
-                .then( () =>  {
-                    console.log("Deleted note");
+                .then( () => {
+                    console.log('deleted a note');
                 })
         });
     res.json(id);
 });
-
 
 
 app.listen(PORT, () => {
