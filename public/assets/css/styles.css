@@ -2,7 +2,8 @@ p.impact {
   font-family: Impact, Charcoal, sans-serif;
 }
 
-/* html, body {
+
+ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -17,6 +18,9 @@ p.impact {
   margin-right: 15px;
   font-size: 1.5rem;
   cursor: pointer;
+}
+.icondiv{
+  display: inline;
 }
 
 .note-textarea, .note-title {
@@ -71,4 +75,14 @@ p.impact {
   border-right: none;
   padding: 20px;
   cursor: pointer;
-} */
+} 
+.spannote{
+  position: absolute;
+  display: none;
+  color: white;
+  left: 0%;
+  width: 100px;
+  font-size: 12px;
+  color:#23a9f2;
+}
+

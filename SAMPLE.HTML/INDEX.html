@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -61,7 +61,7 @@
   <!-- <nav class="navbar navbar-dark bg-dark">
       <a class="navbar-brand" href="/">Note Taker </a>
     </nav> -->
-   <div id="bc1">
+  <!-- <div id="bc1">
     <div class="container d-flex justify-content-center">
       <div id="bc2">
 
@@ -90,6 +90,27 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
  
-</body>
-</html>
+</body> -->
 
+</html> -->
+
+<!-- app.get('/api/notes', (req, res) => {
+  const rawData = fs.readFileSync(path.join(__dirname,'db','db.json'));
+  let jsonData =  JSON.parse(rawData);
+  console.log(jsonData);
+  //res.json([{"title":"Test Title","text":"Test text"}]);
+  res.json(jsonData);
+});
+
+// POST /notes route
+app.post('/api/notes', (req, res) => {
+
+  const noteFromUser = req.body; 
+
+  jsonData.push(noteFromUser);
+  // console.log(noteFromUser);
+  res.send("Success");
+});
+app.get('/api/notes/:id', (req, res) => {
+  res.json(jsonData[req.params.id]);
+}); -->

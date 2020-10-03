@@ -1,20 +1,73 @@
 const express = require('express');
-// const path = require('path');
-// const fs = require('fs');
-const apiRoutes  = require('./routes/apiRoutes');
-const htmlRoutes  = require('./routes/htmlRoutes');
+const path = require('path');
+const fs = require('fs');
+var util = require('util');
 const app = express();
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 
-
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json);
+app.use(express.json());
 
-// require('./routes/apiRoutes')(app);
-// require('./routes/htmlRoutes')(app);
+const writefileAsync = util.promisify(fs.writeFile);
+const readFileAsync = util.promisify(fs.readFile);
+
+  // Routes 
+app.get('/', (req, res) => {
+    console.log("root");
+    res.sendFile(path.join(__dirname, "../public/index.html"));
+});
+
+app.get('/notes', (req, res) => {
+
+    res.sendFile(path.join(__dirname, "../public/notes.html"));
+    // console.log("i am a note");
+
+});
+app.get("/api/notes", (req, res) => {
+    readFileAsync(path.join(__dirname, 'db/db.json'), 'utf8')
+        .then(data => {
+            return res.json(JSON.parse(data));
+        });
+});
+
+app.post("/api/notes", (req, res) => {
+    let newNote = req.body
+    readFileAsync(path.join(__dirname, 'db/db.json'), 'utf8')
+        .then(data => {
+            allNotes = JSON.parse(data);
+            if (newNote.id || newNote.id === 0) {
+                let currNote = allNotes[newNote.id];
+                currNote.title = newNote.title;
+                currNote.text = newNote.text;
+            } else {
+                allNotes.push(newNote);
+            }
+            writefileAsync(path.join(__dirname, 'db/db.json'), JSON.stringify(allNotes))
+                .then(() => {
+                    console.log('done');
+                })
+        })
+    res.json(newNote);
+});
+
+app.delete("/api/notes/:id", (req, res) => {
+    let id = req.params.id;
+    readFileAsync(path.join(__dirname, "./public/assets/js/index.js"), "utf8")
+        .then(data =>  {
+            allNotes = JSON.parse(data);
+            allNotes.splice(id, 1);
+            writefileAsync(path.join(__dirname, "./db/db.json"), JSON.stringify(allNotes))
+                .then( () =>  {
+                    console.log("Deleted note");
+                })
+        });
+    res.json(id);
+});
+
+
 
 app.listen(PORT, () => {
-    console.log('server is running and listening on http://localhost:' + PORT);
+    console.log("server started");
 });

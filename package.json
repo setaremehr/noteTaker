@@ -1,14 +1,23 @@
 {
-  "name": "note-taker",
+  "name": "noteTaker",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "description": "## Description",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Setare Mehr",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/setaremehr/noteTaker.git"
+  },
+  "keywords": [],
+  "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/setaremehr/noteTaker/issues"
+  },
+  "homepage": "https://github.com/setaremehr/noteTaker#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.17.1"
   }
 }
